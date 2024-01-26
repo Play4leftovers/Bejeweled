@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77197edd6f8c444aaf782bb505888cf, type: 3}
+  m_Name: Orange
+  m_EditorClassIdentifier: 
+  JewelType: 5
+  Sprite: {fileID: 430597181, guid: 411cca209ae78b84ab6edd0ff5d4db6d, type: 3}
