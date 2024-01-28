@@ -6,7 +6,6 @@ using UnityEngine;
 public class Jewel : MonoBehaviour
 {
     public JewelSO jewelSO;
-
     void Awake()
     {
         JewelSO[] tempList;

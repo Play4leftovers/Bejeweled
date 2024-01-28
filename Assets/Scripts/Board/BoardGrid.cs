@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BoardGrid
 {
-    private int width, height;
-    private Jewel[,] grid;
-    private float cellSize;
+    public int width, height;
+    public float cellSize;
+    private GameObject[,] grid;
 
     public BoardGrid(int width, int height, float cellSize)
     {
@@ -12,7 +12,7 @@ public class BoardGrid
         this.height = height;
         this.cellSize = cellSize;
         
-        grid = new Jewel[width, height];
+        grid = new GameObject[width, height];
     }
 
     public Vector3 GetWorldPosition(int x, int y)
@@ -23,5 +23,20 @@ public class BoardGrid
     public void SetJewelWorldPosition(int x, int y)
     {
         grid[x, y].gameObject.transform.position = GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+    }
+
+    public GameObject GetJewelFromGrid(int[] position)
+    {
+        return grid[position[0], position[1]];
+    }
+
+    public void RemoveJewelFromGrid(int[] position)
+    {
+        grid[position[0], position[1]] = null;
+    }
+    
+    public void AddJewelToGrid(GameObject jewel, int[] position)
+    {
+        grid[position[0], position[1]] = jewel;
     }
 }
