@@ -38,6 +38,8 @@ public class Board : MonoBehaviour
         MoveJewels();
         FindMatches();
         CleanUpJewels();
+        RepopulateBoard();
+        _cleanUpList.Clear();
     }
 
     private void MoveJewels()
@@ -112,7 +114,6 @@ public class Board : MonoBehaviour
                     {
                         for (int i = 0; i <= _matching-1; i++)
                         {
-                            Debug.Log("Trying to add position [" + x + "]" + "[" + (y-i) + "]");
                             int[] tempArray = { x, y - i };
                             _cleanUpList.Add(tempArray);
                         }
@@ -125,7 +126,6 @@ public class Board : MonoBehaviour
                     {
                         for (int i = 1; i <= _matching; i++)
                         {
-                            Debug.Log("Trying to add position [" + x + "]" + "[" + (y-i) + "]");
                             int[] tempArray = { x, y - i };
                             _cleanUpList.Add(tempArray);
                         }
@@ -136,7 +136,6 @@ public class Board : MonoBehaviour
             }
         }
         
-        Debug.Log("Check Rows now!");
         
         //This loop works exactly the same, but checks elements in rows instead.
         //It also checks if the position it tries to add to CleanUpList already exists in the list.
@@ -177,7 +176,6 @@ public class Board : MonoBehaviour
 
                             if (!sameArray)
                             {
-                                Debug.Log("Trying to add position [" + (x-i) + "]" + "[" + y + "]");
                                 _cleanUpList.Add(tempArray);
                             }
                         }
@@ -203,7 +201,6 @@ public class Board : MonoBehaviour
                             
                             if (!sameArray)
                             {
-                                Debug.Log("Trying to add position [" + (x-i) + "]" + "[" + y + "]");
                                 _cleanUpList.Add(tempArray);
                             }
                                 
@@ -247,6 +244,14 @@ public class Board : MonoBehaviour
         temp[0] = Mathf.FloorToInt((worldPosition.x / _grid.cellSize));
         temp[1] = Mathf.FloorToInt((worldPosition.y / _grid.cellSize));
         return temp;
+    }
+
+    private void RepopulateBoard()
+    {
+        foreach (var position in _cleanUpList)
+        {
+            CreateJewel(position);
+        }
     }
     
     public void MouseBoardBridge(Vector3 worldPositionOne, Vector3 worldPositionTwo)
